@@ -35,6 +35,7 @@ function refreshWeather(response) {
   document.querySelector(
     "#icon"
   ).innerHTML = `<img src="${data.condition.icon_url}" alt="weather icon" />`;
+  getForecast(response.data.city);
 }
 
 function searchCity(city) {
@@ -57,7 +58,15 @@ function handleSearchSubmit(event) {
     searchCity(city);
   }
 }
-function displayForecast() {
+function getForecast(city) {
+  let apiKey = "0adtod78fced068b5db3ce4d3ce10842";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+
+  axios(apiUrl).then(displayForecast);
+}
+function displayForecast(response) {
+  console.log(response.data);
+
   let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
   let forecastHtml = "";
 
@@ -87,4 +96,3 @@ document
   .addEventListener("submit", handleSearchSubmit);
 
 searchCity("Johannesburg");
-displayForecast();
