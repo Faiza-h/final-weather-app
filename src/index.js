@@ -59,8 +59,8 @@ function handleSearchSubmit(event) {
   }
 }
 function formatDay(timestamp) {
-  const date = new Date(timestamp * 1000);
-  const days = [
+  let date = new Date(timestamp * 1000);
+  let days = [
     "Sunday",
     "Monday",
     "Tuesday",
